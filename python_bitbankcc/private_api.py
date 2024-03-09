@@ -69,7 +69,7 @@ class bitbankcc_private(object):
         logger.debug('GET: ' + data)
         headers = make_header(data, self.api_key, self.api_secret)
         uri = self.end_point + path + urlencode(query)
-        with contextlib.closing(requests.get(uri, headers=headers)) as response:
+        with contextlib.closing(requests.get(uri, headers=headers, timeout=5)) as response:
             response.raise_for_status()
             return error_parser(try_json_parse(response, logger))
 
