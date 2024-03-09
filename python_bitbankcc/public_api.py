@@ -38,7 +38,7 @@ class bitbankcc_public(object):
         self.end_point = end_point
 
     def _query(self, query_url):
-        with contextlib.closing(requests.get(query_url)) as response:
+        with contextlib.closing(requests.get(query_url, timeout=5)) as response:
             response.raise_for_status()
             return error_parser(try_json_parse(response, logger))
 
